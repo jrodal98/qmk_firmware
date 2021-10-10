@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define TAPPING_FORCE_HOLD
 // less than this is a tap, longer than this is a hold
-#define TAPPING_TERM 100
+#define TAPPING_TERM 200
 
 #define LEADER_TIMEOUT 300
 
