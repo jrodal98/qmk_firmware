@@ -22,11 +22,28 @@ enum custom_keycodes {
  * 4. To go in opposite direction, run qmk c2json -km KEYMAP -kb KEYBOARD [-q] [--no-cpp] [-o OUTPUT] filename
  */
 
+// Tap Dance declarations
+enum {
+    TD_A_UNDERSCORE,
+};
+
+// Tap Dance definitions
+// use like this: TD(TD_A_UNDERSCORE)
+/* qk_tap_dance_action_t tap_dance_actions[] = { */
+/*     [TD_A_UNDERSCORE] = ACTION_TAP_DANCE_DOUBLE(KC_A, KC_UNDS), */
+/* }; */
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-	[_QWERTY] = LAYOUT(KC_GRV, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_EQL, KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_MINS, LCTL_T(KC_ESC), KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT, KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_LBRC, KC_RBRC, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_MEH, KC_LALT, KC_LGUI, KC_SPC, MO(_LOWER), KC_ENT, KC_BSPC, MO(_RAISE), MO(_ADJUST)),
-	[_LOWER] = LAYOUT(KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_TILD, KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LBRC, KC_RBRC, KC_PIPE, KC_GRV, KC_UNDS, DUNDER, ARROW, SPACED_EQUAL, KC_PEQL, KC_TRNS, KC_LPRN, KC_RPRN, KC_LCBR, KC_RCBR, KC_PIPE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LCBR, KC_RCBR, KC_TRNS, KC_UNDS, KC_PLUS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_DEL, KC_TRNS, KC_TRNS),
+	[_QWERTY] = LAYOUT(KC_GRV, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_EQL, KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_MINS, LCTL_T(KC_ESC), KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT, KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_LBRC, KC_RBRC, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_LEAD, KC_LALT, KC_LGUI, KC_SPC, MO(_LOWER), KC_ENT, KC_BSPC, MO(_RAISE), KC_MEH),
+	[_LOWER] = LAYOUT(KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_TILD, DM_REC1, DM_PLY1, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LBRC, KC_RBRC, KC_PIPE, KC_GRV, KC_UNDS, DUNDER, ARROW, SPACED_EQUAL, KC_PEQL, KC_TRNS, KC_LPRN, KC_RPRN, KC_LCBR, KC_RCBR, KC_PIPE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LCBR, KC_RCBR, KC_TRNS, KC_UNDS, KC_PLUS, KC_TRNS, KC_TRNS, KC_BSLS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_DEL, KC_TRNS, KC_TRNS),
 	[_RAISE] = LAYOUT(KC_TRNS, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPRV, KC_MNXT, KC_BRID, KC_BRIU, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_GRV, KC_1, KC_MS_U, KC_3, KC_4, KC_5, KC_HOME, KC_PGDN, KC_PGUP, KC_END, KC_0, KC_TRNS, KC_F1, KC_MS_L, KC_MS_D, KC_MS_R, KC_F5, KC_F6, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, KC_NO, KC_NO, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_TRNS, KC_TRNS, KC_PLUS, KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS, KC_TRNS, KC_TRNS, KC_BTN1, KC_TRNS, KC_TRNS, KC_BTN2, KC_TRNS, KC_TRNS),
-	[_ADJUST] = LAYOUT(KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS)
+  [_ADJUST] = LAYOUT( \
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,\
+                             _______, _______, _______, _______, _______,  _______, _______, _______ \
+  )
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
@@ -101,4 +118,41 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     }
     return true;
+}
+
+// THIS MUST BE ABOVE MATRIX SCAN USER OR BAD THINGS WILL HAPPEN
+LEADER_EXTERNS();
+
+void matrix_scan_user(void) {
+  LEADER_DICTIONARY() {
+    leading = false;
+    leader_end();
+
+    // SEQ_ONE_KEY, SEQ_TWO_KEYS, and SEQ_THREE_KEYS are options
+
+    // D: Diff
+    SEQ_TWO_KEYS(KC_D, KC_S) {
+      // Anything you can do in a macro.
+      SEND_STRING("## What\n\n\n\n## Why\n\n");
+    }
+    // W: Wiki
+    SEQ_ONE_KEY(KC_W) {
+      // using vimium to open page in new tab
+      SEND_STRING(SS_LSFT("o") SS_DELAY(300) "https://fburl.com/wiki/10cs5ooa\n");
+    }
+
+    SEQ_TWO_KEYS(KC_W, KC_T) {
+      // using vimium to open page in new tab
+      SEND_STRING(SS_LSFT("o") SS_DELAY(300) "https://fburl.com/wiki/y1joamhb\n");
+    }
+
+    // Example: use modifiers SEND_STRING(SS_LCTL("a") SS_LCTL("c"));
+    // example: press A and S, which holds down gui and S and then releases them.
+    /* SEQ_TWO_KEYS(KC_A, KC_S) { */
+    /*   register_code(KC_LGUI); */
+    /*   register_code(KC_S); */
+    /*   unregister_code(KC_S); */
+    /*   unregister_code(KC_LGUI); */
+    /* } */
+  }
 }

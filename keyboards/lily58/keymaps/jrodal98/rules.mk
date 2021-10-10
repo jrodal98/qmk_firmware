@@ -13,6 +13,10 @@ AUDIO_ENABLE = no           # Audio output
 RGBLIGHT_ENABLE = no       # Enable WS2812 RGB underlight.
 SWAP_HANDS_ENABLE = no      # Enable one-hand typing
 OLED_ENABLE= no     # OLED display, this was the only one that was 'yes' by default
+DYNAMIC_MACRO_ENABLE = yes # Added by me, allows recording up to two macros: https://docs.qmk.fm/#/feature_dynamic_macros
+TAP_DANCE_ENABLE = no # added by me, does something special when a key is tapped twice
+KEY_LOCK_ENABLE = no
+LEADER_ENABLE = yes
 
 # Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE
 SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
