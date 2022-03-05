@@ -24,10 +24,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Definitions are in process_record_user
 enum custom_keycodes {
     ARROW = SAFE_RANGE,
+    FAT_ARROW,
     SPACED_EQUAL,
     DIFF,
-    TEST_IN_PROD,
-    NEXT_DIAGNOSTIC,
+    TIP_ORLY,
+    N_DIAG,
+    INC_SZ,
+    DEC_SZ,
+    MD_BLK,
 };
 
 
@@ -39,18 +43,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
   LCTL_T(KC_ESC),  KC_A,  KC_S,   KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_RSFT,
+      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_CAPS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                      MO(1), LGUI_T(KC_SPC), MO(2),     LT(2, KC_ENT),  LT(1, KC_BSPC) , RALT_T(KC_SPC) 
+                            LM(1, MOD_LALT), LGUI_T(KC_SPC), MO(2),     LT(2, KC_ENT),  LT(1, KC_BSPC) , RALT_T(KC_SPC) 
                                       //`--------------------------'  `--------------------------'
 
   ),
 
   [1] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,   _______,
+      KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,   KC_EQL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, TEST_IN_PROD,_______, DIFF, NEXT_DIAGNOSTIC, KC_EQL,              KC_LEFT, KC_DOWN, KC_UP,  KC_RIGHT, KC_F11,  KC_F12,
+      _______, TIP_ORLY, MD_BLK,  DIFF,   N_DIAG,  KC_EQL,                      KC_LEFT, KC_DOWN, KC_UP,  KC_RIGHT, KC_F11,  KC_F12,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______,  KC_F1,  KC_F2,  KC_F3,    KC_F4,   KC_F5,                         KC_F6,   KC_F7,   KC_F8,  KC_F9,   KC_F10, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -62,9 +66,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       KC_TILD, KC_EXLM,  KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, KC_UNDS, _______, ARROW, SPACED_EQUAL, KC_LBRC,                  KC_RBRC, KC_LPRN, KC_RPRN, KC_LCBR, KC_RCBR, KC_PIPE,
+      _______, KC_UNDS,FAT_ARROW, ARROW, SPACED_EQUAL, KC_LBRC,                  KC_RBRC, KC_LPRN, KC_RPRN, KC_LCBR, KC_RCBR, KC_PIPE,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, _______, _______, _______, _______, _______,                      KC_MINS, KC_PLUS, KC_EQL, KC_RCBR, KC_BSLS, KC_TILD,
+      _______, _______, _______, _______, _______, _______,                      KC_MINS, KC_PLUS, KC_EQL, KC_RCBR, KC_BSLS, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           MO(3), _______,  _______,     _______, MO(3), _______ 
                                       //`--------------------------'  `--------------------------'
@@ -74,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPRV, KC_MNXT,                      KC_BRID, KC_BRIU, _______, _______, _______, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, _______, _______,                      _______, _______, _______, _______, _______, _______,
+      RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, _______, _______,                     _______,  DEC_SZ,   INC_SZ, _______, _______, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, _______, _______,                      _______, _______, _______, _______, _______, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -170,13 +174,14 @@ void oled_render_logo(void) {
     oled_write_P(crkbd_logo, false);
 }
 
-void oled_task_user(void) {
+bool oled_task_user(void) {
     if (is_keyboard_master()) {
         oled_render_layer_state();
         oled_render_keylog();
     } else {
         oled_render_logo();
     }
+    return false;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -191,7 +196,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // include an "else" to do something when
         // a key is released
         break;
-
+    case FAT_ARROW:
+        if (record->event.pressed) {
+            SEND_STRING(" => ");
+        }
+        // include an "else" to do something when
+        // a key is released
+        break;
     case SPACED_EQUAL:
         if (record->event.pressed) {
             SEND_STRING(" = ");
@@ -202,14 +213,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING("## What\n\n\n\n## Why\n\n");
         }
         break;
-    case TEST_IN_PROD:
+    case MD_BLK:
+        if (record->event.pressed) {
+            SEND_STRING("```\n\n```"SS_TAP(X_UP));
+        }
+        break;
+    case TIP_ORLY:
         if (record->event.pressed) {
             SEND_STRING("test_in_prod_orly");
         }
         break;
-    case NEXT_DIAGNOSTIC:
+    case N_DIAG:
         if (record->event.pressed) {
             SEND_STRING("]d");
+        }
+        break;
+    case INC_SZ:
+        if (record->event.pressed) {
+           SEND_STRING(SS_LGUI("+")); // selects all and copies
+        }
+        break;
+    case DEC_SZ:
+        if (record->event.pressed) {
+           SEND_STRING(SS_LGUI("-")); // selects all and copies
         }
         break;
     }
