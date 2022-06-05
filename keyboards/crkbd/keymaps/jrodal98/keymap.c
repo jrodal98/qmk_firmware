@@ -43,9 +43,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
   LCTL_T(KC_ESC),  KC_A,  KC_S,   KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_CAPS,
+      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N, KC_M,   KC_COMM,  KC_DOT, KC_SLSH, MEH_T(KC_CAPS),
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                            LM(1, MOD_LALT), LGUI_T(KC_SPC), MO(2),     LT(2, KC_ENT),  LT(1, KC_BSPC) , RALT_T(KC_SPC) 
+                              LM(1, MOD_LALT), LGUI_T(KC_SPC), MO(2), KC_ENT,  LT(1, KC_BSPC) , RALT_T(KC_SPC) 
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -58,19 +58,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______,  KC_F1,  KC_F2,  KC_F3,    KC_F4,   KC_F5,                         KC_F6,   KC_F7,   KC_F8,  KC_F9,   KC_F10, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______,  MO(3),     MO(3),  _______, _______ 
+                                          _______, _______,  MO(3),     _______,  _______, _______ 
                                       //`--------------------------'  `--------------------------'
   ),
 
   [2] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_TILD, KC_EXLM,  KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
+      KC_TILD, KC_EXLM,  KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_PIPE,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, KC_UNDS,FAT_ARROW, ARROW, SPACED_EQUAL, KC_LBRC,                  KC_RBRC, KC_LPRN, KC_RPRN, KC_LCBR, KC_RCBR, KC_PIPE,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, _______, _______, _______, _______, _______,                      KC_MINS, KC_PLUS, KC_EQL, KC_RCBR, KC_BSLS, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          MO(3), _______,  _______,     _______, MO(3), _______ 
+                                          _______, _______,  _______,     _______, MO(3), _______ 
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -210,7 +210,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     case DIFF:
         if (record->event.pressed) {
-            SEND_STRING("## What\n\n\n\n## Why\n\n");
+            SEND_STRING("## What\n\n\n\n## Why\n\n"SS_TAP(X_UP)SS_TAP(X_UP)SS_TAP(X_UP)SS_TAP(X_UP));
         }
         break;
     case MD_BLK:
@@ -230,12 +230,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     case INC_SZ:
         if (record->event.pressed) {
-           SEND_STRING(SS_LGUI("+")); // selects all and copies
+           SEND_STRING(SS_LGUI("+")); // sends shift, super, +
         }
         break;
     case DEC_SZ:
         if (record->event.pressed) {
-           SEND_STRING(SS_LGUI("-")); // selects all and copies
+           SEND_STRING(SS_LGUI("-")); // sends shift, super, -
         }
         break;
     }
