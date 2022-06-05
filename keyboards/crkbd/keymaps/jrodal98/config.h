@@ -37,6 +37,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 
+// RGB MATRIX MODES
+// https://docs.qmk.fm/#/feature_rgb_matrix
+#define ENABLE_RGB_MATRIX_BREATHING
+
+#define RGB_MATRIX_FRAMEBUFFER_EFFECTS
+#define ENABLE_RGB_MATRIX_TYPING_HEATMAP
+
 #ifdef RGBLIGHT_ENABLE
     #undef RGBLED_NUM
     #define RGBLIGHT_ANIMATIONS
