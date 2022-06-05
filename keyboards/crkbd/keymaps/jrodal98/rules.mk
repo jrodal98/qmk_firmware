@@ -9,6 +9,6 @@ RGB_MATRIX_ENABLE = yes
 # automatically deactive after word ends
 # works with snakecase and backspaces
 # see https://docs.qmk.fm/#/feature_caps_word
-# CAPS_WORD_ENABLE = yes
+CAPS_WORD_ENABLE = yes
 
 # BOOTLOADER = atmel-dfu  # Elite-C
