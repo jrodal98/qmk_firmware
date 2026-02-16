@@ -43,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
   LCTL_T(KC_ESC),  KC_A,  KC_S,   KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N, KC_M,   KC_COMM,  KC_DOT, KC_SLSH, KC_HYPR,
+      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N, KC_M,   KC_COMM,  KC_DOT, KC_SLSH, HYPR_T(QK_LEAD),
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                               LM(1, MOD_LALT), LGUI_T(KC_SPC), MO(2), KC_ENT,  LT(1, KC_BSPC) , RALT_T(KC_SPC)
                                       //`--------------------------'  `--------------------------'
@@ -80,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       RM_TOGG, RM_HUEU, RM_SATU, RM_VALU, RM_NEXT, RGB_M_P,                     _______,  DEC_SZ,   INC_SZ, _______, _______, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-    _______, RM_HUED, RM_SATD, RM_VALD, RM_PREV, RGB_M_B,                      _______, _______, _______, _______, _______, _______,
+    _______, RM_HUED, RM_SATD, RM_VALD, RM_PREV, RGB_M_B,                      _______, DM_REC1, DM_PLY1, DM_REC2, DM_PLY2, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______,  _______,     _______, _______, _______
                                       //`--------------------------'  `--------------------------'
@@ -183,11 +183,14 @@ bool oled_task_user(void) {
     }
     return false;
 }
+#endif // OLED_ENABLE
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed) {
-    set_keylog(keycode, record);
-  }
+  #ifdef OLED_ENABLE
+if (record->event.pressed) {
+        set_keylog(keycode, record);
+      }
+  #endif /* ifdef OLED_ENABLE */
   switch (keycode) {
     case ARROW:
         if (record->event.pressed) {
@@ -230,15 +233,35 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     case INC_SZ:
         if (record->event.pressed) {
-           SEND_STRING(SS_LGUI("+")); // sends shift, super, +
+           if (detected_host_os() == OS_MACOS) {
+               SEND_STRING(SS_LGUI("+"));
+           } else {
+            SEND_STRING(SS_LCTL("+"));
+           }
         }
         break;
     case DEC_SZ:
         if (record->event.pressed) {
-           SEND_STRING(SS_LGUI("-")); // sends shift, super, -
+           if (detected_host_os() == OS_MACOS) {
+               SEND_STRING(SS_LGUI("-"));
+           } else {
+            SEND_STRING(SS_LCTL("-"));
+           }
         }
         break;
     }
   return true;
 }
-#endif // OLED_ENABLE
+
+void leader_end_user(void) {
+    if (leader_sequence_two_keys(KC_Q, KC_Q)) {
+        tap_code16(DM_REC1);
+    } else if (leader_sequence_two_keys(KC_Q, KC_W)) {
+        tap_code16(DM_REC2);
+    } else if (leader_sequence_two_keys(KC_AT, KC_Q)) {
+        tap_code16(DM_PLY1);
+    } else if (leader_sequence_two_keys(KC_AT, KC_W)) {
+        tap_code16(DM_PLY2);
+    }
+
+}

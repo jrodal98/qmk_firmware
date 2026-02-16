@@ -13,8 +13,6 @@
 // https://docs.qmk.fm/#/feature_rgb_matrix
 #ifdef RGB_MATRIX_ENABLE
     #define ENABLE_RGB_MATRIX_BREATHING
-    #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
-    #define ENABLE_RGB_MATRIX_TYPING_HEATMAP
 #endif // RGB_MATRIX_ENABLERGB_MATRIX_ENABLE
 
 #ifdef OLED_ENABLE
