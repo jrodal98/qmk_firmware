@@ -1,9 +1,9 @@
 OLED_ENABLE = yes
-OLED_DRIVER = SSD1306
-# RGBLIGHT_ENABLE = yes
+OLED_DRIVER = ssd1306
 MOUSEKEY_ENABLE = no
 
 RGB_MATRIX_ENABLE = yes
+RGBLIGHT_ENABLE = no
 
 # letters are capitalized while active
 # automatically deactive after word ends

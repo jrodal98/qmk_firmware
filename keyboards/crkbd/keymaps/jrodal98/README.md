@@ -12,5 +12,5 @@ qmk flash -kb crkbd -km jrodal98
 - More details about CONVERT_TO [here](https://docs.qmk.fm/#/feature_converters?id=converters)
 
 ```
-qmk flash -kb crkbd -km jrodal98 -e CONVERT_TO=promicro_rp2040
+qmk flash -kb crkbd -km jrodal98 -e CONVERT_TO=blok
 ```
