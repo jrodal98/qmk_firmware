@@ -43,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
   LCTL_T(KC_ESC),  KC_A,  KC_S,   KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N, KC_M,   KC_COMM,  KC_DOT, KC_SLSH, HYPR_T(QK_LEAD),
+      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N, KC_M,   KC_COMM,  KC_DOT, KC_SLSH, KC_HYPR,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                               LM(1, MOD_LALT), LGUI_T(KC_SPC), MO(2), KC_ENT,  LT(1, KC_BSPC) , RALT_T(KC_SPC)
                                       //`--------------------------'  `--------------------------'
@@ -253,15 +253,3 @@ if (record->event.pressed) {
   return true;
 }
 
-void leader_end_user(void) {
-    if (leader_sequence_two_keys(KC_Q, KC_Q)) {
-        tap_code16(DM_REC1);
-    } else if (leader_sequence_two_keys(KC_Q, KC_W)) {
-        tap_code16(DM_REC2);
-    } else if (leader_sequence_two_keys(KC_AT, KC_Q)) {
-        tap_code16(DM_PLY1);
-    } else if (leader_sequence_two_keys(KC_AT, KC_W)) {
-        tap_code16(DM_PLY2);
-    }
-
-}

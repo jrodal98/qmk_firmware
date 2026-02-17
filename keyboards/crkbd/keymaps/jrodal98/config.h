@@ -18,3 +18,8 @@
 #ifdef OLED_ENABLE
     #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
 #endif // OLED_ENABLE
+
+
+#ifdef CONVERT_TO_BLOK
+    #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET
+#endif // CONVERT_TO_BLOK
