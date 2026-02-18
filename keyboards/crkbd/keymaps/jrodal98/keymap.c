@@ -253,3 +253,12 @@ if (record->event.pressed) {
   return true;
 }
 
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LGUI_T(KC_SPC):
+            // prevent accidentally holding space on cmd-v
+            return 0;
+        default:
+            return QUICK_TAP_TERM;
+    }
+}
