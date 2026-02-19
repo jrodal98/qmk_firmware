@@ -258,6 +258,9 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
         case LGUI_T(KC_SPC):
             // prevent accidentally holding space on cmd-v
             return 0;
+        case LT(1, KC_BSPC):
+            // prevent accidentally holding backspace on layer transition
+            return 0;
         default:
             return QUICK_TAP_TERM;
     }
