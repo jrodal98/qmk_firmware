@@ -4,6 +4,7 @@ RGBLIGHT_ENABLE = no
 CAPS_WORD_ENABLE = yes
 DYNAMIC_MACRO_ENABLE = yes
 OS_DETECTION_ENABLE = yes
+AUTO_SHIFT_ENABLE = yes
 
 ifeq ($(strip $(JROD_OLED)), enable)
 	OLED_ENABLE = yes

@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // macros: https://docs.qmk.fm/#/feature_macros
 // Definitions are in process_record_user
+
 enum custom_keycodes {
     ARROW = SAFE_RANGE,
     FAT_ARROW,
@@ -33,8 +34,6 @@ enum custom_keycodes {
     DEC_SZ,
     MD_BLK,
 };
-
-
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_split_3x6_3(
@@ -76,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [3] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPRV, KC_MNXT,                      KC_BRID, KC_BRIU, _______, _______, _______, _______,
+      _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPRV, KC_MNXT,                      KC_BRID, KC_BRIU, AS_DOWN, AS_UP, AS_RPT, AS_TOGG,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       RM_TOGG, RM_HUEU, RM_SATU, RM_VALU, RM_NEXT, RGB_M_P,                     _______,  DEC_SZ,   INC_SZ, _______, _______, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|

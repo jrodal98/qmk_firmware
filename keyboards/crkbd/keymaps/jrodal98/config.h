@@ -9,6 +9,9 @@
 
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 
+// Auto Shift settings
+#define AUTO_SHIFT_TIMEOUT 175
+
 // RGB MATRIX MODES
 // https://docs.qmk.fm/#/feature_rgb_matrix
 #ifdef RGB_MATRIX_ENABLE
