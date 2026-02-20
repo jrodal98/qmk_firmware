@@ -11,6 +11,7 @@
 
 // Auto Shift settings
 #define AUTO_SHIFT_TIMEOUT 140
+#define AUTO_SHIFT_REPEAT
 #define AUTO_SHIFT_ENTER
 #define NO_AUTO_SHIFT_NUMERIC
 
